@@ -1,0 +1,45 @@
+@startuml
+
+!include <aws/common>
+!include <aws/Storage/AmazonS3/AmazonS3>
+!include <aws/Storage/AmazonS3/bucket/bucket>
+
+AMAZONS3(s3) {
+    BUCKET(site,www.insecurity.co)
+    BUCKET(logs,logs.insecurity.co)
+}
+site .r.> logs : events
+
+' https://github.com/awslabs/aws-icons-for-plantuml/blob/main/examples/helloworld.puml
+
+!define AWSPuml https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/v14.0/dist
+!include AWSPuml/AWSCommon.puml
+!include AWSPuml/Groups/all.puml
+!include AWSPuml/BusinessApplications/all.puml
+!include AWSPuml/Storage/SimpleStorageService.puml
+!include AWSPuml/Storage/SimpleStorageServiceBucket.puml
+
+' !include <awslib/AWSCommon>
+' !include <awslib/BusinessApplications/all>
+' !include <awslib/Storage/SimpleStorageService>
+' !include <awslib/Storage/SimpleStorageServiceBucket>
+
+actor "Person" as personAlias
+
+WorkDocs(desktopAlias, "Label", "Technology", "Optional Description")
+SimpleStorageService(storageAlias, "Label", "Technology", "Optional Description")
+
+personAlias -> desktopAlias
+desktopAlias --> storageAlias
+
+' define custom group for Amazon S3 bucket
+AWSGroupColoring(S3BucketGroup, #FFFFFF, AWS_COLOR_GREEN, plain)
+!define S3BucketGroup(g_alias, g_label="Amazon S3 bucket") AWSGroupEntity(g_alias, g_label, AWS_COLOR_GREEN, SimpleStorageService, S3BucketGroup)
+
+S3BucketGroup(bucketGroup) {
+  SimpleStorageService(anotherStorageAlias, "Another Label", "Technology", "Optional Description")
+  SimpleStorageService(yetAnotherStorageAlias, "Yet Another Label", "Technology", "Optional Description")
+}
+anotherStorageAlias .> yetAnotherStorageAlias : events
+
+@enduml
