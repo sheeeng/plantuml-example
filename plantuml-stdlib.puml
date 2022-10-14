@@ -1,0 +1,22 @@
+@startuml
+
+' https://blog.nillsf.com/index.php/2019/10/04/using-plantuml-to-generate-architecture-artifacts/
+
+title <&caret-right> Example: High Level Architecture of API Management with Azure Kubernetes Service (AKS) <&caret-left>
+
+actor "End User" as eu
+
+frame "Azure Virtual Network" {
+    frame "Azure API Management (APIM) Subnet" {
+        node "API Management (APIM)" as apim
+    }
+    frame "Azure Kubernetes Service (AKS) Subnet" {
+        node "Interal Load Balancer" as ilb
+        node "Azure Kubernetes Service (AKS) Cluster" as aks
+    }
+}
+
+eu -->> apim
+apim -->> ilb
+ilb -->> aks
+@enduml

@@ -1,0 +1,42 @@
+@startuml
+
+title Example: Azure DevOps / GitHub Actions
+
+' https://www.azuredevops.tips/build-diagramsplantuml/
+
+!define AzurePuml https://raw.githubusercontent.com/plantuml-stdlib/Azure-PlantUML/release/2-1/dist
+
+!includeurl AzurePuml/AzureCommon.puml
+
+!includeurl AzurePuml/Databases/all.puml
+
+!includeurl AzurePuml/Compute/AzureFunction.puml
+
+!includeurl AzurePuml/Containers/AzureKubernetesService.puml
+
+!includeurl AzurePuml/DevOps/AzureRepos.puml
+!includeurl AzurePuml/DevOps/AzureArtifacts.puml
+!includeurl AzurePuml/DevOps/AzureDevOps.puml
+!includeurl AzurePuml/DevOps/AzurePipelines.puml
+!includeurl AzurePuml/DevOps/AzureRepos.puml
+
+AzureRepos(git,"GitHub Repository", "Repository")
+AzureDevOps(githubActions,"GitHub Actions", "Actions")
+AzurePipelines(githubActionsWorkflow,"GitHub Actions Workflow", "Workflow")
+AzureArtifacts(githubActionsWorkflowArtifact,"GitHub Actions Artifacts", "Artifacts")
+
+git->githubActions : Trigger
+githubActions->githubActionsWorkflow : Build
+githubActionsWorkflow-->githubActionsWorkflowArtifact : Archive
+
+component "<color:red><$AzureFunction></color>" as secondFunction
+database "<color:#0072C6><$AzureCosmosDb></color>" as secondCosmosDb
+AzureFunction(thirdFunction, "Stream Processing", "Consumption")
+rectangle "<color:AZURE_SYMBOL_COLOR><$AzureCosmosDb></color>" as thirdCosmosDb
+
+secondFunction --> secondCosmosDb
+thirdFunction --> thirdCosmosDb
+
+AzureKubernetesService(objectReference,"label","description","summary")
+
+@enduml
