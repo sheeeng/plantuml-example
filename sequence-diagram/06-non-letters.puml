@@ -1,0 +1,7 @@
+@startuml
+Alice -> "Bob()" : Say Hello
+"Bob()" -> "Daenerys Stormborn of House Targaryen,\nFirst of Her Name, The Unburnt, Queen of the Andals, the Rhoynar and the First Men,\nQueen of Meereen, Khaleesi of the Great Grass Sea, Protector of the Realm,\nLady Regnant of the Seven Kingdoms, Breaker of Chains, and Mother of Dragons" as Daenerys : Relay Hello
+' You can also declare:
+' "Bob()" -> Daenerys as "Daenerys Stormborn of House Targaryen,\nFirst of Her Name, The Unburnt, Queen of the Andals, the Rhoynar and the First Men,\nQueen of Meereen, Khaleesi of the Great Grass Sea, Protector of the Realm,\nLady Regnant of the Seven Kingdoms, Breaker of Chains, and Mother of Dragons"
+Daenerys --> "Bob()" : Reply OK
+@enduml

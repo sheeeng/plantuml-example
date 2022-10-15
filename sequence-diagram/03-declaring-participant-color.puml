@@ -1,0 +1,18 @@
+@startuml
+
+box Sequence Diagram: Declaring Participant Color
+
+actor Bob #red
+' The only difference between actor
+'and participant is the drawing
+participant Alice
+participant "Daenerys Stormborn of House Targaryen,\nFirst of Her Name, The Unburnt, Queen of the Andals, the Rhoynar and the First Men,\nQueen of Meereen, Khaleesi of the Great Grass Sea, Protector of the Realm,\nLady Regnant of the Seven Kingdoms, Breaker of Chains, and Mother of Dragons" as Daenerys #99FF99
+/' We can also declare like the following line.
+participant Daenerys as "Daenerys Stormborn of House Targaryen,\nFirst of Her Name, The Unburnt, Queen of the Andals, the Rhoynar and the First Men,\nQueen of Meereen, Khaleesi of the Great Grass Sea, Protector of the Realm,\nLady Regnant of the Seven Kingdoms, Breaker of Chains, and Mother of Dragons" #99FF99
+'/
+
+Alice->Bob: Authentication Request
+Bob->Alice: Authentication Response
+Bob-->Daenerys: Log Transaction
+
+@enduml

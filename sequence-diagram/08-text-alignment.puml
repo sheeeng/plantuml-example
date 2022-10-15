@@ -1,0 +1,14 @@
+@startuml
+
+Box Alpha
+skinparam sequenceMessageAlign left
+Jonathan -> Elizabeth : AAA
+Elizabeth -> Jonathan : BBB
+
+Box Beta
+skinparam sequenceMessageAlign right
+skinparam responseMessageBelowArrow true
+Robert -> Alicent : CCC
+Alicent -> Robert : DDD
+
+@enduml
